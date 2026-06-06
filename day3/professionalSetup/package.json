@@ -1,0 +1,15 @@
+{
+  "name": "professionalsetup",
+  "version": "1.0.0",
+  "description": "we are trying to learning professional set of backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javaSript",
+    "backend"
+  ],
+  "author": "Tarun Yadav",
+  "license": "ISC"
+}

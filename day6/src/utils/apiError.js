@@ -1,0 +1,25 @@
+//here we are trying to make our custom eror 
+
+class apiError extends Error{
+    constructor(
+        statusCode,
+        message = "something went wrong ",
+        error = [],
+        stack = ""
+    ){
+        this.statusCode = statusCode;
+        this.data = null;
+        this.message = message;
+        this.success = false;
+        this.error = error
+
+        if(stack){
+            this.stack = stack;
+        }
+        else{
+            Error.prepareStackTrace(this , this.constructor);
+        }
+    }
+}
+
+export default apiError;

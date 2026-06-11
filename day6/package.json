@@ -1,0 +1,33 @@
+{
+  "name": "day6",
+  "version": "1.0.0",
+  "description": "revision of project setup",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon -r dotenv/config src/index.js"
+  },
+  "keywords": [
+    "tarun",
+    "backend",
+    "express",
+    "macbook"
+  ],
+  "author": "Tarun Yadav",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.10.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.0",
+    "multer": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

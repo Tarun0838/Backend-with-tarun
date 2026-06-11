@@ -1,0 +1,22 @@
+{
+  "name": "router",
+  "version": "1.0.0",
+  "description": "we are learning router basic and controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "backend",
+    "router",
+    "tarun",
+    "yadav"
+  ],
+  "author": "Tarun Yadav",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.6.3",
+    "multer": "^2.1.1"
+  }
+}

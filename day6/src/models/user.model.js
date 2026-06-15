@@ -67,8 +67,8 @@ Mongoose me hooks ko officially "middleware" bhi kehte hain. Ye database operati
  */
 
 
-userSchema.pre("save", async function(next){
-    if(!this.isModified("password")) return next();
+userSchema.pre("save", async function(){
+    if(!this.isModified("password")) return;
 
     /**
      * ye niche wali line password ko hash karengi jab bhi userSchema mai passowrd filed modified hogi
@@ -76,7 +76,7 @@ userSchema.pre("save", async function(next){
      */
 
     this.password = await bcrypt.hash(this.password, 10);
-    next();
+    // next();
 })
 
 /**
@@ -85,8 +85,8 @@ userSchema.pre("save", async function(next){
  * now ab encrypt password and normal password ko compare karna to possible nhi so hum uske liye bcrypt se hi bolenge ki isko compare karke batao 
  */
 
-userSchema.methods.isPasswordCorrect = async function(passowrd) {
-  return await bcrypt.compare(passowrd , this.passowrd)
+userSchema.methods.isPasswordCorrect = async function(password) {
+  return await bcrypt.compare(password , this.password)
 }
 
 /**

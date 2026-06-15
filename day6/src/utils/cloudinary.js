@@ -16,7 +16,10 @@ const uploadCoudinary = async function(localFilePath){
         const response = await cloudinary.uploader.upload(localFilePath)
         console.log("File is uploaded sucessfully");
         console.log("url: ", response.url);
-        console.log(response);
+        // remove localstored file 
+        fs.unlinkSync(localFilePath);
+        return response;
+        // console.log(response);
     } catch (error) {
         fs.unlinkSync(localFilePath);
         return null;

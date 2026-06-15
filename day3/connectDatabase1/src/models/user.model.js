@@ -97,7 +97,7 @@ userSchema.methods.isPasswordCorrect = async function(passowrd) {
 // ab jwt token se accessToken and refreshToken generate karenge 
 
 userSchema.methods.generateAccessToken = function(){
-   return jwt.sign(
+   return jwt.sign( // sign ka matlab hai digital signature create karna
         {
             id :  this.id,
             username : this.username,

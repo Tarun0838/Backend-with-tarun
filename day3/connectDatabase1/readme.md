@@ -1,4 +1,9 @@
+
 # What is Middleware 
+
+* # middlewareka simple matlab hota hai " like koi kaam karne ja rehe ho to uss kaam ko karne se phele mere se milte hue jaana " ye middleware hota hai 
+
+
 * middleware is nothing but ek checking code hota hai jo execute or run hota hai req and response ke bich mai 
 
 * jab client request karta hai server se e.g instagram.com/chat 

@@ -347,12 +347,115 @@ const getCurrentUser = asyncHandler(async (req, res)=>{
     )
 })
 
+
+const changeAccountDetail = asyncHandler(async (req , res )=>{
+    // jo jo detail change karni hai phele vo lo frontend ya postman se
+    const {fullname , email } = req.body;
+
+    // validate the detail 
+    if(!fullname || !email) throw new apiError(400 , "fullname and email is required to change ")
+    
+    // if detail agayi hai to user find karo and update karo detail
+   const user = await  User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set : {fullname: fullname , email : email},
+        },
+        {
+            new : true // iska matlab hai detail update karne ke baad rturn bhi kardo 
+        }
+    ).select("-password")// iska matlab hai user db mai se password return mat karna 
+
+
+    // now ab response send karge
+
+    res.status(200).json(
+        new apiResponse(200 , user , "User detail has been updated successfully ")
+    )
+})
+
+const updateUserAvatar = asyncHandler(async (req , res )=> {
+    // user ki avatar image ko update karna hai vo kah se milegi 
+    // req.files kyuiki multe ka middleware laga rakha hai 
+
+    const avatarLocalPath = req.file?.path;
+
+    // validate the local path
+    if(!avatarLocalPath){
+        throw new apiError(400 , "Avatar image is missing ")
+
+    }
+
+    // upload to cloudinary
+    const avatar = await uploadCoudinary(avatarLocalPath)
+    if(!avatar.url) {
+        throw new apiError("avatar image is not uploaded Successfully")
+    }
+
+    // if uploaded then uppdate the url in database
+
+    User.findByIdAndUpdate(
+        req.user._id,
+        {
+            $set: {avatar: avatar.url}
+        },
+        {
+            new : true,
+        }
+    ).select("-password")
+
+    // return response
+    res.status(200).json(
+       new apiResponse( 200, user , "Avatar image  is updates successfully ")
+    )
+
+})
+const updateUserCoverImage  = asyncHandler(async (req , res )=> {
+    // user ki cover image ko update karna hai vo kah se milegi 
+    // req.files kyuiki multe ka middleware laga rakha hai 
+
+    const coverImageLocalPath = req.file?.path;
+
+    // validate the local path
+    if(!coverImageLocalPath){
+        throw new apiError(400 , "Avatar image is missing ")
+
+    }
+
+    // upload to cloudinary
+    const avatar = await uploadCoudinary(coverImageLocalPath)
+    if(!coverImage.url) {
+        throw new apiError("cover image  is not uploaded Successfully")
+    }
+
+    // if uploaded then uppdate the url in database
+
+    User.findByIdAndUpdate(
+        req.user._id,
+        {
+            $set: {avatar: coverImage.url}
+        },
+        {
+            new : true,
+        }
+    ).select("-password")
+
+    // return response
+    res.status(200).json(
+       new apiResponse( 200, user , "cover Image   is updates successfully ")
+    )
+
+})
+
 export {
     registerUser,
     loginUser,
     logoutUser,
     loginAccessRefreshToken,
     changeCurrentPassword,
-    getCurrentUser
+    getCurrentUser,
+    changeAccountDetail,
+    updateUserAvatar,
+    updateUserCoverImage
 
 };
